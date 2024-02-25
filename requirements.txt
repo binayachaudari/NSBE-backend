@@ -13,6 +13,7 @@ cohere==4.50
 dataclasses-json==0.6.4
 dataclasses-json-speakeasy==0.5.11
 Django==4.2.10
+django-cors-headers==4.3.1
 emoji==2.10.1
 fastavro==1.9.4
 filetype==1.2.0
