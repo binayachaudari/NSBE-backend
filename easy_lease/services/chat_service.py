@@ -1,3 +1,4 @@
+import pickle
 import cohere
 import os
 import hnswlib
@@ -21,9 +22,10 @@ class Documents:
         self.docs = []
         self.docs_embs = []
         self.retrieve_top_k = 10
-        self.rerank_top_k = 3
-        self.load()
-        self.embed()
+        self.rerank_top_k = 5
+        # # Enable load and embed methods to write to a pickel file
+        # self.load()
+        # self.embed()
         self.index()
 
     def load(self) -> None:
@@ -61,13 +63,28 @@ class Documents:
                           model="embed-english-v3.0",
                           input_type="search_document"
           ).embeddings
-                self.docs_embs.extend(docs_embs_batch)
+
+            self.docs_embs.extend(docs_embs_batch)
+
+            with open("docs_embs.pkl", "wb") as f:
+                pickle.dump({
+                    'docs': self.docs,
+                    'embeds': self.docs_embs,
+                    'count': self.docs_len
+                }, f)
+            
 
     def index(self) -> None:
             """
             Indexes the documents for efficient retrieval.
             """
             print("Indexing documents...")
+
+            with open('docs_embs.pkl', 'rb') as f:
+                loaded_model = pickle.load(f)
+                self.docs_embs = loaded_model['embeds']
+                self.docs_len = loaded_model['count']
+                self.docs = loaded_model['docs']
 
             self.index = hnswlib.Index(space="ip", dim=1024)
             self.index.init_index(max_elements=self.docs_len, ef_construction=512, M=64)
@@ -164,6 +181,7 @@ class Chatbot:
               documents=documents,
               conversation_id=self.conversation_id,
               stream=False,
+              preamble_override="Generate informative responses to questions about housing and renting in Toronto, Canada. Your responses should be concise, accurate, and provide relevant information to the user"
           )
           # for event in response:
           #     yield event
@@ -176,7 +194,8 @@ class Chatbot:
           response = co.chat(
               message=message,
               conversation_id=self.conversation_id,
-              stream=False
+              stream=False,
+              preamble_override="Generate informative responses to questions about housing and renting in Toronto, Canada. Your responses should be concise, accurate, and provide relevant information to the user"
           )
           # for event in response:
           #     yield event
@@ -210,24 +229,3 @@ class App:
       #     # Text
       #     if stream_type == "StreamTextGeneration":
       #         return event.text
-
-          # # Citations
-          # if stream_type == "StreamCitationGeneration":
-          #     if not citations_flag:
-          #         print("\n\nCITATIONS:")
-          #         citations_flag = True
-          #     print(event.citations[0])
-
-      #     # Documents
-      #     if citations_flag:
-      #         if stream_type == "StreamingChat":
-      #             print("\n\nDOCUMENTS:")
-      #             documents = [{'id': doc['id'],
-      #                         'text': doc['text'][:50] + '...',
-      #                         'title': doc['title'],
-      #                         'url': doc['url']}
-      #                         for doc in event.documents]
-      #             for doc in documents:
-      #                 print(doc)
-
-      # print(f"\n{'-'*100}\n")
