@@ -1,0 +1,34 @@
+# Virtual Environment Folder
+venv/
+.env/
+
+# Compiled Python Files
+__pycache__/
+*.pyc
+
+# Database Files
+*.sqlite3
+*.db
+
+# Media and Static Files
+media/
+staticfiles/
+
+# Secret Keys and Credentials
+settings_local.py
+
+# IDE/Text Editor Configurations
+.idea/
+*.sublime-
+*.swp
+*.swo
+
+# Custom log files
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Package directories
+node_modules/
