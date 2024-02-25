@@ -30,5 +30,21 @@ sources = [
    {
       "title":"Renting in Ontario: Your rights",
       "url":"https://www.ontario.ca/page/renting-ontario-your-rights"
-   }
+   },
+   {
+      "title":"Share International Students in Canada: Here's How You Can Find a Rental Apartment",
+      "url":"https://www.idp.com/canada/blog/housing-for-international-students-in-canada/"
+   },
+   {
+      "title":"How to find student accommodation in Canada",
+      "url":"https://arrivein.com/housing/how-to-find-student-accommodation-in-canada/"
+   },
+   {
+      "title":"Renting to International Students: A Complete Guide for Landlords",
+      "url":"https://www.singlekey.com/en/ownerkey/finding-tenants/renting-to-international-students-a-complete-guide-for-landlords/"
+   },
+   {
+      "title":"Housing scams and how to spot them",
+      "url":"https://studentlife.utoronto.ca/task/housing-scams-and-how-to-spot-them/"
+   },
 ]
