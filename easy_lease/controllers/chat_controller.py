@@ -18,17 +18,17 @@ def handle_request(request):
       response = App(chatbot_obj).run(quesn)
       res_obj = {
         'text': response.text, 
-        'generation_id': response.generation_id, 
-        'citations': response.citations,
-        'documents': response.documents,
-        'is_search_required': response.is_search_required, 
-        'search_results': response.search_results,
-        'finish_reason': response.finish_reason,
-        'chat_history': response.chat_history,
-        'message':response.message, 
-        'response_id':response.response_id,
-        'token_count':response.token_count,
-        'conversation_id':response.conversation_id, 
+        # 'generation_id': response.generation_id, 
+        # 'citations': response.citations,
+        # 'documents': response.documents,
+        # 'is_search_required': response.is_search_required, 
+        # 'search_results': response.search_results,
+        # 'finish_reason': response.finish_reason,
+        # 'chat_history': response.chat_history,
+        # 'message':response.message, 
+        # 'response_id':response.response_id,
+        # 'token_count':response.token_count,
+        # 'conversation_id':response.conversation_id, 
       }
       return JsonResponse(res_obj, safe=False)
     else: 
