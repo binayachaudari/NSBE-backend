@@ -1,6 +1,7 @@
 # Virtual Environment Folder
 venv/
 .env/
+.env
 
 # Compiled Python Files
 __pycache__/
