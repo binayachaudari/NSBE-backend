@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-rsu4v==9^7*%7j$7$*yg*d+sbmbe3#928^)98+(%q-id=--#$#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nsbe-backend.onrender.com']
+ALLOWED_HOSTS = ['nsbe.thedevelop3r.com', 'easy-lease.vercel.app', '0.0.0.0', 'localhost']
 
 
 # Application definition
